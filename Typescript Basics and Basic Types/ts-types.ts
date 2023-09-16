@@ -30,6 +30,9 @@ const person = {
     role: Role.ADMIN
 };
 
+// ANY - type can be used when we absolutely have no idea what input will come
+// be it is to be avoided because it ruins the whole idea of TYPEscript
+
 // person.role[1] = 10 // this blows an error because the second element is fixed as a string
 // person.role.push('admin') // this changes the tuple an is somehow acceptable even though it violates
 // the requirement two be an array of a number and a string: two els in total
