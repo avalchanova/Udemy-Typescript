@@ -26,3 +26,4 @@ function greet(user) {
 function isOlder(user, checkAge) {
     return checkAge > user.age;
 }
+var u2 = { 'Max': , 29:  };

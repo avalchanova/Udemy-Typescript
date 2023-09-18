@@ -56,3 +56,11 @@ function greet(user: UserObj) {
 function isOlder(user: UserObj, checkAge: number) {
     return checkAge > user.age;
 }
+
+type User2 = { name: string; age: number };
+const u2: User2 = { 'Max', 29};
+// i still do not understand why this does not work
+
+type Product = { title: string; price: number; };
+const p1: Product = { title: 'A Book', price: 12.99, isListed: true }
+// wouldn't work because isListed is not in type Product
