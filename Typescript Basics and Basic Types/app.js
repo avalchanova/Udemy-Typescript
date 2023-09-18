@@ -21,3 +21,4 @@ function generateError(message, code) {
     // it can also be used in a never ending loop
 }
 generateError('An error occurred!', 500);
+//  whenever
