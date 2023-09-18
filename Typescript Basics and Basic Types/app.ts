@@ -1,6 +1,9 @@
+type Combinable = number | string
+// we usually use type Alias in addition to type Union
+
 function combine(
-    n1: number | string,
-    n2: number | string,
+    n1: Combinable,
+    n2: Combinable,
     typeParams: "as-number" | "as-string") {
     // genius 
     // we mix UNION AND LITERAL types
