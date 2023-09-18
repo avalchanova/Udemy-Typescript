@@ -1,4 +1,9 @@
-function combine(n1: number | string, n2: number | string, typeParams: string) {
+function combine(
+    n1: number | string,
+    n2: number | string,
+    typeParams: "as-number" | "as-string") {
+    // genius 
+    // we mix UNION AND LITERAL types
     let result
     if (typeof n1 === "number" && n2 === "number" || typeParams === "as-number") {
         result = +n1 + +n2;
