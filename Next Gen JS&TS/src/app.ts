@@ -26,8 +26,12 @@ printOutput(add(5,9))
 
 // THE SPREAD OPERATOR (...)
 
-const hobbies = ["Football", "Cooking"]
+const hobbies = ["Football", "Cooking", "Running"]
 const activeHobbies = ["Hiking"]
+
+// Array distructuring:
+const [hobby1, hobby2, ...remainingHobbies] = hobbies
+console.log(remainingHobbies)
 
 // activeHobbies.push(hobbies) // this will push an array in the array which is not okay
 activeHobbies.push(hobbies[0], hobbies[1]) // that is okay but too long
