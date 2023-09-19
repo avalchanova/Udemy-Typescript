@@ -8,7 +8,6 @@ const add = (a:number, b:number=3) => {
 
 const addAgain = (a:number, b:number) =>  a+b
 
-
 console.log(add(2))
 
 const printOutput = (output: string | number)=> {
@@ -40,9 +39,13 @@ activeHobbies.push(...hobbies)
 // and add them in the activeHobbies array
 
 const person = {
-    name: 'Max',
+    firstName: 'Max',
     age:30
 };
+
+const {firstName: userName,age} = person
+// this way we are renaming the property firstName to be userName
+
 
 // const copiedPerson = person //we are coping the pointer at the Person object
 // which only points the copiedPerson obj to the memory where the Person obj is stored
