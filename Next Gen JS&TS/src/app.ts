@@ -49,6 +49,8 @@ const copiedPerson = {...person} // pulls out all the key-value pairs and they a
 
 
 const addOneMoreTime = (...numbers: number[]) => {
+    // we can use a tuple if we know exactly how many params we expect
+    // --> const addOneMoreTime = (...numbers: [number, number, number]) => {
     // let result = 0
     // one way:
     // for (let index = 0; index < numbers.length; index++) {
