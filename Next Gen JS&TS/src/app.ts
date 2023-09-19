@@ -46,3 +46,21 @@ const person = {
 
 const copiedPerson = {...person} // pulls out all the key-value pairs and they are 
 // added in the new copiedPerson object and it makes a perfect copy this way
+
+
+const addOneMoreTime = (...numbers: number[]) => {
+    // let result = 0
+    // one way:
+    // for (let index = 0; index < numbers.length; index++) {
+    //     result += numbers[index]
+    // }
+    // return result
+
+    // another way:
+    return numbers.reduce((currResult, currValue)=>{
+        return currResult+currValue
+    },0)
+};
+
+const addedNumbers = addOneMoreTime(5,6,8,11,20.5,133.3);
+console.log(addedNumbers);
