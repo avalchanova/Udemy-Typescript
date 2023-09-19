@@ -98,7 +98,18 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
+  // LOOK HERE:
   "exclude": [
-    "analytics.ts"
-  ]
+    // "*.dev.ts"
+    // this will exclude any file that ends with .dev.ts
+    // or **/*.dev.ts will exclude any file in any folder which ends with .zdev.ts
+    "node_modules" // this would happen even without us typing it; it is automatic
+  ],
+  // "include": [
+  //   "app.ts",
+  //   "analytics.ts"
+  // ]
+  // "files":[
+  //   "app.ts"
+  // ] // only concrete files, not folders
 }
