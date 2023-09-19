@@ -2,6 +2,9 @@ const add = (a:number, b:number) => {
     return a+b
 }
 
+const addAgain = (a:number, b:number) =>  a+b
+
+
 console.log(add(2,5))
 
 const printOutput = (output: string | number)=> {
