@@ -15,3 +15,11 @@ const accounting = new Department('Accounting'); // this creates a new Departmen
 
 // Calling the method of the class instance "Accounting"
 accounting.describe()
+
+const accountingCopy = {describe: accounting.describe}
+
+accountingCopy.describe()
+// this will console undefined because 
+// because it relies on the instance of the class (accounting)
+// and since the accountingCopy has no name, when this is called
+// it refurres to an empty space
