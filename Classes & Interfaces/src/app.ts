@@ -215,7 +215,7 @@ accountingDep.describe()
 
 // allow us to add props and methods only on the class 
 // used on utility functions or global constants
-// an example is the JS Math construction (we can access the PI value, or pow method which calculates the power of a num )
+// an example is the JS Math class construction (we can access the PI value, or pow method which calculates the power of a num )
 
 
 // Singletons and Private Constructors:
