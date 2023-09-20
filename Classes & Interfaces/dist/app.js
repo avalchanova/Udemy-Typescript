@@ -79,6 +79,9 @@ var AccountingDepartment = (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountingDepartment.prototype.describe = function () {
+        console.log('Accounting Department ID: ' + this.id);
+    };
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === "Max") {
             return;
@@ -100,8 +103,7 @@ var accountingDep = new AccountingDepartment('ddthf2', []);
 accountingDep.mostRecentReport = 'Year End Report';
 accountingDep.addEmployee('Max');
 accountingDep.addEmployee('Manuel');
-accountingDep.printEmployeeInformation();
 accountingDep.addReport('Something went wrong');
 console.log(accountingDep.mostRecentReport);
-accountingDep.printReports();
+accountingDep.describe();
 //# sourceMappingURL=app.js.map

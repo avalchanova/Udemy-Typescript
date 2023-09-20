@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
     static fiscalYear = 2020
     // This is how we initialize props and methods without a shorthand:
     // private id: string
@@ -15,7 +15,7 @@ class Department {
     // with protected we can access this prop in a class that inherits Department
     // unaccessible from the outside but accessible inside of an inherited class
 
-    constructor(private readonly id: string, public name: string) { 
+    constructor(protected readonly id: string, public name: string) { 
         // this is a method --> any function in classes are called methods
         // readonly is in TS only and makes sure that the id cannot be rewritten
         // STATIC fiscalYear is not accessible here with this: this.fiscalYear
@@ -28,14 +28,26 @@ class Department {
         }
     }
 
-    describe(this: Department) { // this: Department is a dummy parameter
+    // ABSTRACT:
+    // when one or more methods in a class are abstract, the class must be abstract as well
+    // abstract method is just confined here (below) how this method should look like
+    // but we are not stating anything else beside this
+    // abstract methods are used we want to reinforce any new class that is created
+    // on a instance of a given class to HAVE THIS METHOD, because it won't have any other option
+    // and the abstract method does not hold any specific logic,
+    // the new class takes care of the logic
+    // AN ABSTRACT CLASS: is a class that can only be inherited from, it cannot be instantiated themselves
+    abstract describe(this: Department): void;
+
+    //}{
+    // this: Department is a dummy parameter
         // We are saying: when Describe is executed,
         // the keyword this should always refer to an instance 
         // that is based on the Department class
         // the this keyword points to something in the current {} maybe (not sure though)
-      console.log(`Department (${this.id}): ${this.name}`)  
+    //   console.log(`Department (${this.id}): ${this.name}`)  
     // always using the this keyword 
-    }
+    // }
     
     addEmployee(employee: string){
         this.employees.push(employee)
@@ -49,6 +61,7 @@ class Department {
 
 const accounting = new Department('id1', 'Accounting'); // this creates a new Department object
 // this accounting is an instance of the Department class
+
 
 accounting.addEmployee('Max');
 accounting.addEmployee('Manuel');
@@ -81,8 +94,10 @@ const accountingCopy = {name: 's', describe: accounting.describe}
 
 
 // Inheritance:
-
+ 
 class ITDepartment extends Department{
+    // we do not offer the describe method here anymore, that is why an err occurs 
+    // so the abstract method must be implemented by ANY class that is based on the Department class
     admins: string[]; // can use the shorthand initialization
     // we can only inherit from one class 
     constructor(id: string, admins: string[]){
@@ -93,6 +108,9 @@ class ITDepartment extends Department{
         // super is always called first; especially before using the "this" keyword
         // we can harcode the name since it is expected to be an IT dep it can be a fixed name "IT"
         this.admins = admins 
+    }
+    describe() {
+        console.log('IT Department ID: ' + this.id);
     }
 }
 const newITDep = new ITDepartment("id11", ["Alex"])
@@ -122,8 +140,11 @@ class AccountingDepartment extends Department {
 
     constructor(id:string, private reports: string[]){
         super(id, 'Accounting');
-        this.lastReport=reports[0]
+        this.lastReport = reports[0]
+    }
 
+    describe() {
+        console.log('Accounting Department ID: ' + this.id);
     }
 
     //overriding a method
@@ -153,17 +174,20 @@ const accountingDep = new AccountingDepartment('ddthf2', []);
 accountingDep.mostRecentReport = 'Year End Report' // SETTER: access is at as a property without ()
 accountingDep.addEmployee('Max'); //won't save it because of our method logic
 accountingDep.addEmployee('Manuel');
-accountingDep.printEmployeeInformation();
+// accountingDep.printEmployeeInformation();
 
 accountingDep.addReport('Something went wrong');
 
 console.log(accountingDep.mostRecentReport); // GETTER
 // we access as a property, so we do not type it mostRecentReport(), but without ()!!!
-accountingDep.printReports();
+
+// accountingDep.printReports();
+
+accountingDep.describe()
 
 
 // Static Methods and Properties:
+
 // allow us to add props and methods only on the class 
 // used on utility functions or global constants
 // an example is the JS Math construction (we can access the PI value, or pow method which calculates the power of a num )
-// 
