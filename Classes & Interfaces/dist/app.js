@@ -25,9 +25,6 @@ var Department = (function () {
             name: name
         };
     };
-    Department.prototype.describe = function () {
-        console.log("Department (".concat(this.id, "): ").concat(this.name));
-    };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
     };
@@ -38,12 +35,6 @@ var Department = (function () {
     Department.fiscalYear = 2020;
     return Department;
 }());
-var accounting = new Department('id1', 'Accounting');
-accounting.addEmployee('Max');
-accounting.addEmployee('Manuel');
-accounting.describe();
-accounting.printEmployeeInformation();
-var accountingCopy = { name: 's', describe: accounting.describe };
 var ITDepartment = (function (_super) {
     __extends(ITDepartment, _super);
     function ITDepartment(id, admins) {
@@ -51,6 +42,9 @@ var ITDepartment = (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log('IT Department ID: ' + this.id);
+    };
     return ITDepartment;
 }(Department));
 var newITDep = new ITDepartment("id11", ["Alex"]);
@@ -79,6 +73,13 @@ var AccountingDepartment = (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountingDepartment.getInstance = function () {
+        if (this.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment('d2', []);
+        return this.instance;
+    };
     AccountingDepartment.prototype.describe = function () {
         console.log('Accounting Department ID: ' + this.id);
     };
@@ -99,7 +100,9 @@ var AccountingDepartment = (function (_super) {
 }(Department));
 var employee1 = Department.createEmployee('Aleksandra');
 console.log(employee1, Department.fiscalYear);
-var accountingDep = new AccountingDepartment('ddthf2', []);
+var accountingDep = AccountingDepartment.getInstance();
+var accountingDep2 = AccountingDepartment.getInstance();
+console.log(accountingDep, accountingDep2);
 accountingDep.mostRecentReport = 'Year End Report';
 accountingDep.addEmployee('Max');
 accountingDep.addEmployee('Manuel');

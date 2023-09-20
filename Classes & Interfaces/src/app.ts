@@ -59,12 +59,12 @@ abstract class Department {
     }
 }
 
-const accounting = new Department('id1', 'Accounting'); // this creates a new Department object
+// const accounting = new Department('id1', 'Accounting'); // this creates a new Department object
 // this accounting is an instance of the Department class
 
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Manuel');
+// accounting.addEmployee('Max');
+// accounting.addEmployee('Manuel');
 
 // accounting.employees[3] = "Anne"
 // another way we can access the employees without a method 
@@ -77,10 +77,10 @@ accounting.addEmployee('Manuel');
 // interesting: if compiled it will work because JS only recently introduced the private keyword
 
 // Calling the method of the class instance "Accounting"
-accounting.describe();
-accounting.printEmployeeInformation();
+// accounting.describe();
+// accounting.printEmployeeInformation();
 
-const accountingCopy = {name: 's', describe: accounting.describe}
+// const accountingCopy = {name: 's', describe: accounting.describe}
 // when we add a name prop in here, because now TS sees that the object
 // on which we are calling the describe method now has a name prop just
 // like "this" expects it to have because it is based on the Department class
@@ -90,6 +90,8 @@ const accountingCopy = {name: 's', describe: accounting.describe}
 // because it relies on the instance of the class (accounting)
 // and since the accountingCopy has no name, when this is called
 // it refurres to an empty space
+
+
 
 
 
@@ -116,9 +118,13 @@ class ITDepartment extends Department{
 const newITDep = new ITDepartment("id11", ["Alex"])
 console.log(newITDep)
 
+
+
  
 class AccountingDepartment extends Department {
     private lastReport: string;
+    private static instance: AccountingDepartment
+    // meaning: i have a static prop which is accessible on the class itself, but only inside the class, and the value we store there will be of type AccountingDepartment
     // lastReport is private, so we won't be able to access it outside this class with the . notation
     // but we can add a GETTER method to still make it accessible
     // a getter always RETURNS something
@@ -138,9 +144,22 @@ class AccountingDepartment extends Department {
         this.addReport(value)
     }
 
-    constructor(id:string, private reports: string[]){
+    private constructor(id:string, private reports: string[]){
+        // a private constructor ensures we cannot call a new instance 
+        // therefore we will only ever have one accounting department
         super(id, 'Accounting');
         this.lastReport = reports[0]
+    }
+
+    static getInstance(){
+        // here we check if an instance of the Accounting Department exists
+        // and if it doesn't exist we create a new one and return it either way
+        // if(AccountingDepartment.instance){ --> this works as well as this.instance; it is the same in this case 
+        if(this.instance){
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment('d2', [])
+        return this.instance
     }
 
     describe() {
@@ -169,7 +188,13 @@ class AccountingDepartment extends Department {
 // A static method: we call it directly on the class
 const employee1 = Department.createEmployee('Aleksandra')
 console.log(employee1, Department.fiscalYear)
-const accountingDep = new AccountingDepartment('ddthf2', []);
+// const accountingDep = new AccountingDepartment('d2', []); // this does not work anymore since we made an instace and we strive for singledom 
+// instead we do this:
+const accountingDep = AccountingDepartment.getInstance();
+// which return either the existing instance, or if there isnt one, creates and returns a new one
+const accountingDep2 = AccountingDepartment.getInstance(); // this is the same instance 
+
+console.log(accountingDep, accountingDep2); // will print the two completely identical instances
 
 accountingDep.mostRecentReport = 'Year End Report' // SETTER: access is at as a property without ()
 accountingDep.addEmployee('Max'); //won't save it because of our method logic
@@ -191,3 +216,8 @@ accountingDep.describe()
 // allow us to add props and methods only on the class 
 // used on utility functions or global constants
 // an example is the JS Math construction (we can access the PI value, or pow method which calculates the power of a num )
+
+
+// Singletons and Private Constructors:
+
+// Singleton pattern: ensuring always only have ONLY ONE instance
