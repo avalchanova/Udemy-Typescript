@@ -7,7 +7,9 @@ class Department {
 
     // keyword "private" can be used on properties and methods
     // means that the prop/method is accessible only inside the created object
-    constructor(private id: string, public name: string) { // this is a method --> any function in classes are called methods
+    constructor(private readonly id: string, public name: string) { 
+        // this is a method --> any function in classes are called methods
+        // readonly is in TS only and makes sure that the id cannot be rewritten
     }
     describe(this: Department) { // this: Department is a dummy parameter
         // We are saying: when Describe is executed,
