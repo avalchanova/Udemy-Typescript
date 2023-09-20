@@ -1,4 +1,5 @@
 class Department {
+    // This is how we initialize props and methods without a shorthand:
     // private id: string
     // public name: string; // looks like an object but this is not a key-value, here we only we name the key we will use later and the type of that key 
     // name is a property
@@ -88,8 +89,30 @@ console.log(newITDep)
 
  
 class AccountingDepartment extends Department {
+    private lastReport: string;
+    // lastReport is private, so we won't be able to access it outside this class with the . notation
+    // but we can add a GETTER method to still make it accessible
+    // a getter always RETURNS something
+    get mostRecentReport() {
+        if(this.lastReport){
+            return this.lastReport; //this makes it accessible from the outside
+        }
+        throw new Error('No report found.')
+    }
+
+    // SETTER is a method which allows us to access and modify something
+    // it allows us to set new data
+    set mostRecentReport(value:string){
+        if(!value){
+            throw new Error('Please pass in a valid value!')
+        }
+        this.addReport(value)
+    }
+
     constructor(id:string, private reports: string[]){
-        super(id, 'IT');
+        super(id, 'Accounting');
+        this.lastReport=reports[0]
+
     }
 
     //overriding a method
@@ -98,13 +121,13 @@ class AccountingDepartment extends Department {
             return
         }
         this.employees.push(name)
-    
     }
 
     // We are adding two methods that the base class (Department) doesn't have
     // and also another property "reports"
     addReport(text:string){
         this.reports.push(text);
+        this.lastReport = text
     }
 
     printReports(){
@@ -113,9 +136,18 @@ class AccountingDepartment extends Department {
 }
 
 const accountingDep = new AccountingDepartment('ddthf2', []);
+
+accountingDep.mostRecentReport = 'Year End Report' // SETTER: access is at as a property without ()
 accountingDep.addEmployee('Max'); //won't save it because of our method logic
 accountingDep.addEmployee('Manuel');
 accountingDep.printEmployeeInformation();
 
 accountingDep.addReport('Something went wrong');
+
+console.log(accountingDep.mostRecentReport); // GETTER
+// we access as a property, so we do not type it mostRecentReport(), but without ()!!!
 accountingDep.printReports();
+
+
+// Getters and Setters:
+
