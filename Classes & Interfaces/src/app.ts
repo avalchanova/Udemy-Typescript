@@ -3,10 +3,16 @@ class Department {
     // public name: string; // looks like an object but this is not a key-value, here we only we name the key we will use later and the type of that key 
     // name is a property
     // by default props are public
-    private employees: string[] = []
 
+    // private employees: string[] = []
     // keyword "private" can be used on properties and methods
-    // means that the prop/method is accessible only inside the created object
+    // means that the prop/method is accessible only inside the class they are defined
+    // and not accessible in a new class that inherits this one
+
+    protected employees: string[] = []
+    // with protected we can access this prop in a class that inherits Department
+    // unaccessible from the outside but accessible inside of an inherited class
+
     constructor(private readonly id: string, public name: string) { 
         // this is a method --> any function in classes are called methods
         // readonly is in TS only and makes sure that the id cannot be rewritten
@@ -80,9 +86,19 @@ class ITDepartment extends Department{
 const newITDep = new ITDepartment("id11", ["Alex"])
 console.log(newITDep)
 
+ 
 class AccountingDepartment extends Department {
     constructor(id:string, private reports: string[]){
         super(id, 'IT');
+    }
+
+    //overriding a method
+    addEmployee(name: string){
+        if (name === "Max"){
+            return
+        }
+        this.employees.push(name)
+    
     }
 
     // We are adding two methods that the base class (Department) doesn't have
@@ -96,6 +112,10 @@ class AccountingDepartment extends Department {
     }
 }
 
-const accountingDep = new AccountingDepartment('ddthf2', [])
-accountingDep.addReport('Something went wrong')
-accountingDep.printReports()
+const accountingDep = new AccountingDepartment('ddthf2', []);
+accountingDep.addEmployee('Max'); //won't save it because of our method logic
+accountingDep.addEmployee('Manuel');
+accountingDep.printEmployeeInformation();
+
+accountingDep.addReport('Something went wrong');
+accountingDep.printReports();
