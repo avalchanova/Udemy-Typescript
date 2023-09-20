@@ -1,18 +1,19 @@
 class Department {
-    name: string; // looks like an object but this is not a key-value, here we only we name the key we will use later and the type of that key 
+    // private id: string
+    // public name: string; // looks like an object but this is not a key-value, here we only we name the key we will use later and the type of that key 
     // name is a property
+    // by default props are public
     private employees: string[] = []
 
     // keyword "private" can be used on properties and methods
     // means that the prop/method is accessible only inside the created object
-    constructor(n: string) { // this is a method --> any function in classes are called methods
-        this.name = n; 
+    constructor(private id: string, public name: string) { // this is a method --> any function in classes are called methods
     }
     describe(this: Department) { // this: Department is a dummy parameter
         // We are saying: when Describe is executed,
         // the keyword this should always refer to an instance 
         // that is based on the Department class
-      console.log('Department: ' + this.name)  
+      console.log(`Department (${this.id}): ${this.name}`)  
     // always using the this keyword 
     }
     
@@ -26,7 +27,7 @@ class Department {
     }
 }
 
-const accounting = new Department('Accounting'); // this creates a new Department object
+const accounting = new Department('id1', 'Accounting'); // this creates a new Department object
 // this accounting is an instance of the Department class
 
 accounting.addEmployee('Max');
@@ -40,6 +41,7 @@ accounting.addEmployee('Manuel');
 // are working on a project consistency is good
 // that is why we made this property private so it can be accessed only
 // inside the instance of the class and not outside
+// interesting: if compiled it will work because JS only recently introduced the private keyword
 
 // Calling the method of the class instance "Accounting"
 accounting.describe();
