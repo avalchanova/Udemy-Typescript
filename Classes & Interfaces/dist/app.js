@@ -1,9 +1,13 @@
 "use strict";
-class Department {
-    constructor(n) {
+var Department = (function () {
+    function Department(n) {
         this.name = n;
     }
-}
-const accounting = new Department('Accounting');
-console.log(accounting);
+    Department.prototype.describe = function () {
+        console.log('Department: ' + this.name);
+    };
+    return Department;
+}());
+var accounting = new Department('Accounting');
+accounting.describe();
 //# sourceMappingURL=app.js.map

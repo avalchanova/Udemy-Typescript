@@ -4,8 +4,14 @@ class Department {
     constructor(n: string) { // this is a method --> any function in classes are called methods
         this.name = n; 
     }
+    describe() {
+      console.log('Department: ' + this.name)  
+    // always using the this keyword 
+    }
 }
 
 const accounting = new Department('Accounting'); // this creates a new Department object
+// this accounting is an instance of the Department class
 
-console.log(accounting);
+// Calling the method of the class instance "Accounting"
+accounting.describe()
