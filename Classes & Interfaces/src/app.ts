@@ -59,3 +59,43 @@ const accountingCopy = {name: 's', describe: accounting.describe}
 // because it relies on the instance of the class (accounting)
 // and since the accountingCopy has no name, when this is called
 // it refurres to an empty space
+
+
+
+// Inheritance:
+
+class ITDepartment extends Department{
+    admins: string[]; // can use the shorthand initialization
+    // we can only inherit from one class 
+    constructor(id: string, admins: string[]){
+        // whenever we add our own constructor in a class
+        // that inherits another class we have to add super in the
+        // inheritance class
+        super(id, 'IT') // super calls the constructor of the base class (the Department class in this case)
+        // super is always called first; especially before using the "this" keyword
+        // we can harcode the name since it is expected to be an IT dep it can be a fixed name "IT"
+        this.admins = admins 
+    }
+}
+const newITDep = new ITDepartment("id11", ["Alex"])
+console.log(newITDep)
+
+class AccountingDepartment extends Department {
+    constructor(id:string, private reports: string[]){
+        super(id, 'IT');
+    }
+
+    // We are adding two methods that the base class (Department) doesn't have
+    // and also another property "reports"
+    addReport(text:string){
+        this.reports.push(text);
+    }
+
+    printReports(){
+        console.log(this.reports);
+    }
+}
+
+const accountingDep = new AccountingDepartment('ddthf2', [])
+accountingDep.addReport('Something went wrong')
+accountingDep.printReports()
