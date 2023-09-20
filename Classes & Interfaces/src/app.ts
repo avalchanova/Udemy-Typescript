@@ -1,4 +1,5 @@
 class Department {
+    static fiscalYear = 2020
     // This is how we initialize props and methods without a shorthand:
     // private id: string
     // public name: string; // looks like an object but this is not a key-value, here we only we name the key we will use later and the type of that key 
@@ -17,11 +18,21 @@ class Department {
     constructor(private readonly id: string, public name: string) { 
         // this is a method --> any function in classes are called methods
         // readonly is in TS only and makes sure that the id cannot be rewritten
+        // STATIC fiscalYear is not accessible here with this: this.fiscalYear
+        // but we can access it by typing Department.fiscalYear
     }
+
+    static createEmployee(name:string){
+        return{
+            name:name
+        }
+    }
+
     describe(this: Department) { // this: Department is a dummy parameter
         // We are saying: when Describe is executed,
         // the keyword this should always refer to an instance 
         // that is based on the Department class
+        // the this keyword points to something in the current {} maybe (not sure though)
       console.log(`Department (${this.id}): ${this.name}`)  
     // always using the this keyword 
     }
@@ -134,7 +145,9 @@ class AccountingDepartment extends Department {
         console.log(this.reports);
     }
 }
-
+// A static method: we call it directly on the class
+const employee1 = Department.createEmployee('Aleksandra')
+console.log(employee1, Department.fiscalYear)
 const accountingDep = new AccountingDepartment('ddthf2', []);
 
 accountingDep.mostRecentReport = 'Year End Report' // SETTER: access is at as a property without ()
@@ -149,5 +162,8 @@ console.log(accountingDep.mostRecentReport); // GETTER
 accountingDep.printReports();
 
 
-// Getters and Setters:
-
+// Static Methods and Properties:
+// allow us to add props and methods only on the class 
+// used on utility functions or global constants
+// an example is the JS Math construction (we can access the PI value, or pow method which calculates the power of a num )
+// 
