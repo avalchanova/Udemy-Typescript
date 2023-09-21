@@ -87,3 +87,6 @@ add2 = (n1: number, n2: number) => {
 console.log(add2(1999494.544554, 12));
 
 // * however, using the custom type functions instead of the interface functions is a bit more common
+
+// We cannot store union types in interfaces
+// side note: instantiate = create
