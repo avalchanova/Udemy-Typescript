@@ -11,18 +11,21 @@
 // Interface has no implementation details at all
 // Whereas abstract classes have concrete implementation
 
+// Inheritance:
+// combining two interfaces to work together, look at the greetable interface
 
-
-interface Greetable { // if we switch the word "interface" w/ "type" it will still work
+interface Named {
     readonly name: string; // we can use a readonly on a prop to ensure it won't be changed in the future
                            // this can also happen with custom types
+}
 
+interface Greetable extends Named { // if we switch the word "interface" w/ "type" it will still work
     greet(phrase: string): void;
     // this is the syntax of an interface method
     // no logic inside the method; only params and what should return (void in this case)
 }
 
-class Person implements Greetable{
+class Person implements Greetable{ // Greetable inherits Named and now Person is forced to have all of their props and methods
     // we can implement more than one interface by separating them with a , 
     // we are forced to use the structure of the used interface, so in this case,
     // we have to have a name and a method for greeting, but we can add new props and else
