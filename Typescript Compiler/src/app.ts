@@ -1,2 +1,2 @@
-const userName = "Alexandra"
-console.log(userName)
+let userName;
+console.log(userName);
