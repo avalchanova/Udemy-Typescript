@@ -1,16 +1,19 @@
 "use strict";
 var Person = (function () {
-    function Person(n) {
+    function Person(n, outp) {
         this.age = 27;
         this.name = n;
+        if (outp) {
+            this.outputName = outp;
+        }
     }
     Person.prototype.greet = function (phrase) {
-        console.log(phrase + " " + this.name);
+        console.log(phrase + " " + this.name + ". Output name: " + this.outputName);
     };
     return Person;
 }());
 var user1;
-user1 = new Person("Max");
+user1 = new Person("Max", "maximilianin");
 user1.greet("Hi there, I am");
 console.log(user1);
 var add;

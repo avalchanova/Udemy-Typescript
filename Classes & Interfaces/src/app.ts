@@ -17,6 +17,7 @@
 interface Named {
   readonly name: string; // we can use a readonly on a prop to ensure it won't be changed in the future
   // this can also happen with custom types
+  outputName?: string; // OPTIONAL property: if we do not want to force every implement of this inheritance to have an output
 }
 
 interface Greetable extends Named {
@@ -34,15 +35,21 @@ class Person implements Greetable {
   // we are forced to use the structure of the used interface, so in this case,
   // we have to have a name and a method for greeting, but we can add new props and else
   name: string;
-  age = 27;
+  outputName?: string;
+  age = 27; // i do not understand why the types of name and output are strings, but the number has a concrete value
 
-  constructor(n: string) {
+  constructor(n: string, outp?: string) {
+    // if the prop is optional in the class, we write a ? here
     this.name = n;
+    if (outp) {
+      // since this prop is optional, we first check if it exists, then we continue
+      this.outputName = outp;
+    }
   }
 
   greet(phrase: string) {
     // here we write the logic of the method:
-    console.log(phrase + " " + this.name);
+    console.log(phrase + " " + this.name + ". Output name: " + this.outputName);
   }
 }
 // an interface can't have an initializer -> meaning that name cannot = "Max", we can only state the type
@@ -50,7 +57,7 @@ class Person implements Greetable {
 let user1: Greetable;
 // we use our interface as a type
 
-user1 = new Person("Max");
+user1 = new Person("Max", "maximilianin");
 
 user1.greet("Hi there, I am");
 console.log(user1);
