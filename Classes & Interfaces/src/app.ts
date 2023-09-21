@@ -10,8 +10,12 @@
 // Interface vs Abstract classes
 // Interface has no implementation details at all
 // Whereas abstract classes have concrete implementation
+
+
+
 interface Greetable { // if we switch the word "interface" w/ "type" it will still work
-    name: string;
+    readonly name: string; // we can use a readonly on a prop to ensure it won't be changed in the future
+                           // this can also happen with custom types
 
     greet(phrase: string): void;
     // this is the syntax of an interface method
