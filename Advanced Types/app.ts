@@ -1,3 +1,5 @@
+// Intersection Types --> &
+
 type Admin = {
   // difing a type
   name: string;
