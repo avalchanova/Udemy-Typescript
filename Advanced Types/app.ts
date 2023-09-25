@@ -19,3 +19,10 @@ const e1: ElevatedEmployee = {
   privileges: ["create-server"],
   startDate: new Date(),
 };
+
+type Combinable = string | number;
+type Numeric = number | boolean;
+
+type Universal = Combinable & Numeric;
+// the intersection combinator can be used with
+// any types and then builds the intersection of these types
