@@ -28,3 +28,5 @@ type Numeric = number | boolean;
 type Universal = Combinable & Numeric;
 // the intersection combinator can be used with
 // any types and then builds the intersection of these types
+
+// Type Guards
