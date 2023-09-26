@@ -25,8 +25,9 @@ const e1: ElevatedEmployee = {
 type Combinable = string | number;
 type Numeric = number | boolean;
 
+// Intersection Types:
 type Universal = Combinable & Numeric;
 // the intersection combinator can be used with
 // any types and then builds the intersection of these types
 
-// Type Guards
+// Type Guards:
