@@ -53,3 +53,32 @@ function printEmployee(emp: UnknownEmployee) {
 }
 printEmployee(e1);
 printEmployee({ name: "Alejandro", privileges: ["admin"] });
+
+class Car {
+  drive() {
+    console.log("Driving ...");
+  }
+}
+
+class Truck {
+  drive() {
+    console.log("Driving the truck...");
+  }
+  loadCargo(ammount: number) {
+    console.log("Loading " + ammount + " kg");
+  }
+}
+
+type Vehicle = Car | Truck; // union type (repetition is the mother of knowledge :))) )
+
+const v1 = new Car();
+const v2 = new Truck();
+
+function useVehicle(vehicle: Vehicle) {
+  vehicle.drive();
+
+  if (vehicle instanceof Truck) {
+    // instanceof is a vanilla js operator and will execute in runtime just like typeof
+    vehicle.loadCargo(1000);
+  }
+}
