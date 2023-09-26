@@ -45,4 +45,17 @@ function useVehicle(vehicle) {
     }
 }
 useVehicle(v2);
+function moveAnimal(animal) {
+    let speed;
+    switch (animal.type) {
+        case "bird":
+            speed = animal.flyingSpeed;
+            break;
+        case "horse":
+            speed = animal.runningSpeed;
+            break;
+    }
+    console.log("The " + animal.type + " is moving with " + speed + "km/h");
+}
+moveAnimal({ type: "bird", flyingSpeed: 45 });
 //# sourceMappingURL=app.js.map

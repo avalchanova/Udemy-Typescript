@@ -56,6 +56,7 @@ printEmployee(e1);
 printEmployee({ name: "Alejandro", privileges: ["admin"] });
 
 class Car {
+  // this example (instanceof) won't work with interfaces, because it needs to be compiled in JS to be checked and JS does not support interfaces
   drive() {
     console.log("Driving ...");
   }
@@ -86,3 +87,34 @@ function useVehicle(vehicle: Vehicle) {
 }
 
 useVehicle(v2);
+
+// Descriminated Union:
+
+interface Bird {
+  type: "bird"; // literal type
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse"; // literal type
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  // we cannot check instanceof here because the code is compiled to JS before checking it and JS does not support interfaces
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
+  }
+
+  console.log("The " + animal.type + " is moving with " + speed + "km/h");
+}
+
+moveAnimal({ type: "bird", flyingSpeed: 45 });
