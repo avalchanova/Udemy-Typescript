@@ -44,4 +44,5 @@ function useVehicle(vehicle) {
         vehicle.loadCargo(1000);
     }
 }
+useVehicle(v2);
 //# sourceMappingURL=app.js.map

@@ -30,7 +30,7 @@ type Universal = Combinable & Numeric;
 // the intersection combinator can be used with
 // any types and then builds the intersection of these types
 
-// Type Guards:
+// Type Guard ("typeof"):
 function add(a: Combinable, b: Combinable) {
   if (typeof a === "string" || typeof b === "string") {
     // this is a type guard
@@ -42,6 +42,7 @@ function add(a: Combinable, b: Combinable) {
 
 type UnknownEmployee = Admin | Employee; // again, this is union type (when we use |)
 
+// Type Guards for objects ("in" and "instanceof")
 function printEmployee(emp: UnknownEmployee) {
   console.log(emp.name);
   if ("privileges" in emp) {
@@ -79,6 +80,9 @@ function useVehicle(vehicle: Vehicle) {
 
   if (vehicle instanceof Truck) {
     // instanceof is a vanilla js operator and will execute in runtime just like typeof
+    // with instance of we check if some object is based on a given class
     vehicle.loadCargo(1000);
   }
 }
+
+useVehicle(v2);
