@@ -119,3 +119,18 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 45 });
+
+
+// Type Casting:
+
+const paragraph = document.querySelector('p'); // TS returns type of element HTMLParagraph or null
+// because in tsconfig.json we have included the dom library in the "lib" array
+// const paragraph = document.getElementById('messageOutput');  // TS returns type of element HTMLElement  or null
+// TS needs to know what HTML element it is because it will throw an error
+// if we try to access the userInputElement's value
+// that is why we cast types (2 ways): 
+// 1st way: const userInputElement = <HTMLInputElement>document.getElementById('userInput') // TS returns type of element HTMLElement or null
+// 2nd way: const userInputElement = document.getElementById('userInput') as HTMLInputElement
+// chose one and be consistent with it throughout the project 
+
+const userInputElement = document.getElementById('userInput') as HTMLInputElement
