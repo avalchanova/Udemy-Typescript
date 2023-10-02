@@ -11,7 +11,7 @@ type Employee = {
   startDate: Date;
 };
 
-type ElevatedEmployee = Admin & Employee; // the result is a new obj type that encapsulated Admin and Employee
+type ElevatedEmployee = Admin & Employee; // the result is a new obj type that encapsulates Admin and Employee
 
 // we can achieve the same if instead of types the Admin and the Employee are interfaces
 // then we will create an interface ElevatedEmployee extends Admin, Employee
@@ -25,10 +25,10 @@ const e1: ElevatedEmployee = {
 type Combinable = string | number;
 type Numeric = number | boolean;
 
-// Intersection Types:
 type Universal = Combinable & Numeric;
 // the intersection combinator can be used with
 // any types and then builds the intersection of these types
+
 
 // Type Guard ("typeof"):
 function add(a: Combinable, b: Combinable) {
@@ -40,7 +40,7 @@ function add(a: Combinable, b: Combinable) {
   }
 }
 
-type UnknownEmployee = Admin | Employee; // again, this is union type (when we use |)
+type UnknownEmployee = Admin | Employee; // again, this is union type (when we use | )
 
 // Type Guards for objects ("in" and "instanceof")
 function printEmployee(emp: UnknownEmployee) {
@@ -91,7 +91,7 @@ useVehicle(v2);
 // Descriminated Union:
 
 interface Bird {
-  type: "bird"; // literal type
+  type: "bird"; // literal type, meaning it has a an exact value "bird" (literal types can be strings, nums and booleans)
   flyingSpeed: number;
 }
 
@@ -100,11 +100,12 @@ interface Horse {
   runningSpeed: number;
 }
 
-type Animal = Bird | Horse;
+type Animal = Bird | Horse; // union types 
 
 function moveAnimal(animal: Animal) {
   // we cannot check instanceof here because the code is compiled to JS before checking it and JS does not support interfaces
   let speed;
+  // this is descriminated union:
   switch (animal.type) {
     case "bird":
       speed = animal.flyingSpeed;
