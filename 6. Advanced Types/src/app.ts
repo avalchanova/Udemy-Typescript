@@ -155,5 +155,6 @@ interface ErrorContainer { // {email: "Not a valid email", username: "Must start
 }
 
 const errorBag: ErrorContainer = {
-    email: 'Not a valid email'
+    email: 'Not a valid email',
+    username: "Must start with a letter",
 }
