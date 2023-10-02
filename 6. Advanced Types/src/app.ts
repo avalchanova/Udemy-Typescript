@@ -134,7 +134,14 @@ const paragraph = document.querySelector('p'); // TS returns type of element HTM
 // chose one and be consistent with it throughout the project 
 
 const userInputElement = document.getElementById('userInput') as HTMLInputElement
+// but we do this ONLY if we are sure that the element we are accessing is an existing element
 
 // The Exclamation Mark !
 // used to say to TS that everything before ! is not going to return null
 // we guarantee it to TS
+
+// however, if we are not sure the input element exists we can put it in an if() statement:
+
+if (userInputElement) {
+    (userInputElement as HTMLInputElement).value = 'Hi there!'
+}
