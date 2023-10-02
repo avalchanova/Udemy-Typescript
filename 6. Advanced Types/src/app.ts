@@ -158,3 +158,6 @@ const errorBag: ErrorContainer = {
     email: 'Not a valid email',
     username: "Must start with a letter",
 }
+
+// Function overloads:
+
