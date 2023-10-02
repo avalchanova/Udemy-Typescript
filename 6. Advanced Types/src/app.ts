@@ -130,7 +130,11 @@ const paragraph = document.querySelector('p'); // TS returns type of element HTM
 // if we try to access the userInputElement's value
 // that is why we cast types (2 ways): 
 // 1st way: const userInputElement = <HTMLInputElement>document.getElementById('userInput') // TS returns type of element HTMLElement or null
-// 2nd way: const userInputElement = document.getElementById('userInput') as HTMLInputElement
+// 2nd way: const userInputElement = document.getElementById('userInput')! as HTMLInputElement
 // chose one and be consistent with it throughout the project 
 
 const userInputElement = document.getElementById('userInput') as HTMLInputElement
+
+// The Exclamation Mark !
+// used to say to TS that everything before ! is not going to return null
+// we guarantee it to TS
