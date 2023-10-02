@@ -145,3 +145,15 @@ const userInputElement = document.getElementById('userInput') as HTMLInputElemen
 if (userInputElement) {
     (userInputElement as HTMLInputElement).value = 'Hi there!'
 }
+
+
+// Index Type:
+
+interface ErrorContainer { // {email: "Not a valid email", username: "Must start with a character"}
+    [prop: string]: string; // with that we say: i do not know the exact property name, i also do not know the property count, i just know every prop must have a prop name (being a string) and a value (string)
+
+}
+
+const errorBag: ErrorContainer = {
+    email: 'Not a valid email'
+}
