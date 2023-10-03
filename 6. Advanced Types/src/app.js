@@ -12,6 +12,14 @@ function add(a, b) {
         return a + b;
     }
 }
+const fetchedUserData = {
+    id: "u1",
+    name: "Alex",
+    job: { title: "CEO", description: "My own company" }
+};
+console.log(fetchedUserData.job && fetchedUserData.job.title);
+const result = add('Mark', 'Twen');
+result.split(' ');
 function printEmployee(emp) {
     console.log(emp.name);
     if ("privileges" in emp) {
@@ -58,4 +66,13 @@ function moveAnimal(animal) {
     console.log("The " + animal.type + " is moving with " + speed + "km/h");
 }
 moveAnimal({ type: "bird", flyingSpeed: 45 });
+const paragraph = document.querySelector('p');
+const userInputElement = document.getElementById('userInput');
+if (userInputElement) {
+    userInputElement.value = 'Hi there!';
+}
+const errorBag = {
+    email: 'Not a valid email',
+    username: "Must start with a letter",
+};
 //# sourceMappingURL=app.js.map

@@ -47,6 +47,20 @@ function add(a: Combinable, b: Combinable) {
   }
 }
 
+// Optional chaining:
+const fetchedUserData = {
+    id: "u1",
+    name: "Alex",
+    job: {title: "CEO", description: "My own company"}
+};
+// if we try to fetch data from the backend and do not have a job property, 
+// we can check the JS way:
+// we try to access job and if there is job we dive deeper in the title 
+// which will avoid runtime errors
+console.log(fetchedUserData.job && fetchedUserData.job.title);
+
+// console.log(fetchedUserData.job.title); 
+
 const result = add('Mark', 'Twen') as string
 // TS predicts that the function add() will always return a Combinable value
 // which is in a way true, but actually it will return either a string or a number
