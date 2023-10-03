@@ -117,3 +117,37 @@ const numberStorage = new DataStorage<number>();
 // the idea behind using generic types is that it provides us with
 // flexibility but still it is strongly typed 
 // therefore it gives us amazing type support and eases our work
+
+// Generic Utility Types:
+
+interface CourseGoal {
+    title: string;
+    description: string;
+    completeUntil: Date;
+}
+
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal{
+    // return {
+    //     title: title,
+    //     description: description,
+    //     completeUntil: date
+    // }
+
+// Generic Utility Type 'Partial'
+    let courseGoal: Partial<CourseGoal> = {};
+    // we are saying: this is an object which at the end will hold a CourseGoal
+    // but initially Pаrtial will hold all these props but they will be optional
+    // this allows us to set the initial value as an empty {} and later add
+    // the props step by step
+
+    courseGoal.title = title;
+    courseGoal.description= description;
+    courseGoal.completeUntil = date;
+    return courseGoal as CourseGoal; // which forces the Partial to become CourseGoal
+    // this is a much less used case-scenario
+}
+
+// Generic Utility Type 'Readonly'
+const nameArr: Readonly<string[]> = ["Max", 'Sports'];
+// nameArr.push('Manu'); //throws an error because it is readonly
+// nameArr.pop() // again an error 

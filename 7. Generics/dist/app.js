@@ -50,4 +50,12 @@ textStorage.addItem('Alex1');
 textStorage.removeItem('Alex1');
 console.log(textStorage.getItems());
 const numberStorage = new DataStorage();
+function createCourseGoal(title, description, date) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
+}
+const nameArr = ["Max", 'Sports'];
 //# sourceMappingURL=app.js.map
