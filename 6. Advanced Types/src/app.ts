@@ -42,7 +42,11 @@ function add(a: Combinable, b: Combinable) {
 
 // Function overloads:
 
-
+const result = add('Mark', 'Twen')
+// TS predicts that the function add() will always return a Combinable value
+// which is in a way true, but actually it will return either a string or a number
+// the consequance is that we cannot call string functions like split() on the result
+// because TS does not see the result as a string but as a Combinable 
 
 type UnknownEmployee = Admin | Employee; // again, this is union type (when we use | )
 
