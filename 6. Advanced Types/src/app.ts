@@ -40,6 +40,10 @@ function add(a: Combinable, b: Combinable) {
   }
 }
 
+// Function overloads:
+
+
+
 type UnknownEmployee = Admin | Employee; // again, this is union type (when we use | )
 
 // Type Guards for objects ("in" and "instanceof")
