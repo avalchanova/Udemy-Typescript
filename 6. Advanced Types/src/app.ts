@@ -62,10 +62,19 @@ const fetchedUserData = {
 console.log(fetchedUserData?.job?.title);
 // this is the TS way of checking if the fetchedUserData exists and the if the job property exists
 // this way we can check for nested props and objects in the main data object
- 
 
 
-// console.log(fetchedUserData.job.title); 
+// Nullish Coalescing = сливане
+
+const userInput = "" 
+// remember in this case TS knows whats up with userInput, but if it comes from the backend, it would not have this on-the-go knowledge
+
+const storedData = userInput || "DEFAULT"; 
+// if the first value is faulsy (e.g "", undefined, null, 0, NaN, etc) the storedData will have a string value "DEFAULT"
+const storedData2 = userInput ?? "DEFAULT"
+// this way if the userInput is undefined or null (only) it will return "DEFAULT"
+console.log(storedData);
+console.log(storedData2);
 
 const result = add('Mark', 'Twen') as string
 // TS predicts that the function add() will always return a Combinable value
