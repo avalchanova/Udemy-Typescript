@@ -70,3 +70,33 @@ function extractAndConvert<T extends object, U extends keyof T>(
 }
 
 console.log(extractAndConvert({name: 'Alex'}, 'name'));
+
+// Generic Classes:
+
+class DataStorage<T > {
+    private data: T[]=[]; // this is an array full of generic types
+    addItem(item: T){ // this is a generic type element which is a part of the array 
+        this.data.push(item);
+    }
+    removeItem(item: T){ // this is a generic type element which is a part of the array 
+        this.data.splice(this.data.indexOf(item), 1)
+    }
+    getItems(){
+        return [...this.data]
+    }
+}
+
+const textStorage = new DataStorage<string>();
+// textStorage.addItem(10) // will return an error 
+textStorage.addItem('Alex')
+textStorage.addItem('Alie')
+textStorage.addItem('Alexandra')
+textStorage.addItem('Alexa')
+textStorage.addItem('Alex1')
+textStorage.removeItem('Alex1')
+console.log(textStorage.getItems());
+
+const numberStorage = new DataStorage<number>();
+// the idea behind using generic types is that it provides us with
+// flexibility but still it is strongly typed 
+// therefore it gives us amazing type checking and eases our work
