@@ -31,6 +31,8 @@ type Universal = Combinable & Numeric;
 
 
 // Type Guard ("typeof"):
+
+
 function add(a: Combinable, b: Combinable) {
   if (typeof a === "string" || typeof b === "string") {
     // this is a type guard
@@ -40,13 +42,24 @@ function add(a: Combinable, b: Combinable) {
   }
 }
 
+
 // Function overloads:
 
-const result = add('Mark', 'Twen')
+const result = add('Mark', 'Twen') as string
 // TS predicts that the function add() will always return a Combinable value
 // which is in a way true, but actually it will return either a string or a number
 // the consequance is that we cannot call string functions like split() on the result
-// because TS does not see the result as a string but as a Combinable 
+// because TS does not see the result as a string but as a Combinable
+// our solutions is to type cast (writing 'as string' at the end) 
+// but this is not optional because we write unnecasary code 
+// the real solution is overloading a function (look above the original function add())
+
+// with a ? we can make one of the params to be optional, example:
+// function add(a: Combinable, b?: Combinable) {...}
+
+result.split(' ')
+
+
 
 type UnknownEmployee = Admin | Employee; // again, this is union type (when we use | )
 
