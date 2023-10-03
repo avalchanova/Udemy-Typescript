@@ -73,14 +73,20 @@ console.log(extractAndConvert({name: 'Alex'}, 'name'));
 
 // Generic Classes:
 
-class DataStorage<T > {
+class DataStorage<T extends string | number | boolean> {
     private data: T[]=[]; // this is an array full of generic types
+    
     addItem(item: T){ // this is a generic type element which is a part of the array 
         this.data.push(item);
     }
-    removeItem(item: T){ // this is a generic type element which is a part of the array 
-        this.data.splice(this.data.indexOf(item), 1)
+    // we can have new generic types in the methods - e.g <U>
+    removeItem(item: T){ 
+        if (this.data.indexOf(item) === -1){ // i do not get this?
+            return 
+        }
+        this.data.splice(this.data.indexOf(item), 1) //-1
     }
+
     getItems(){
         return [...this.data]
     }
@@ -97,6 +103,17 @@ textStorage.removeItem('Alex1')
 console.log(textStorage.getItems());
 
 const numberStorage = new DataStorage<number>();
+
+// const objStorage = new DataStorage<object>();
+// objStorage.addItem({name:"Max"})
+// objStorage.addItem({name:"Manu"})
+// // ...
+// const maxObj = {name: 'Max'}
+// objStorage.removeItem(maxObj) // by functionality the removedItem will always remove the last object in the array 
+// console.log(objStorage.getItems());
+// OBJECTS IN JS ARE REFERENCE TYPES therefore if we first delete Manu and then switch it with Max
+// 
+
 // the idea behind using generic types is that it provides us with
 // flexibility but still it is strongly typed 
-// therefore it gives us amazing type checking and eases our work
+// therefore it gives us amazing type support and eases our work
