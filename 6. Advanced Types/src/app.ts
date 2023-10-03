@@ -57,7 +57,13 @@ const fetchedUserData = {
 // we can check the JS way:
 // we try to access job and if there is job we dive deeper in the title 
 // which will avoid runtime errors
-console.log(fetchedUserData.job && fetchedUserData.job.title);
+// console.log(fetchedUserData.job && fetchedUserData.job.title);
+
+console.log(fetchedUserData?.job?.title);
+// this is the TS way of checking if the fetchedUserData exists and the if the job property exists
+// this way we can check for nested props and objects in the main data object
+ 
+
 
 // console.log(fetchedUserData.job.title); 
 

@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 const e1 = {
     name: "Alex",
     privileges: ["create-server"],
@@ -17,7 +18,7 @@ const fetchedUserData = {
     name: "Alex",
     job: { title: "CEO", description: "My own company" }
 };
-console.log(fetchedUserData.job && fetchedUserData.job.title);
+console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
 const result = add('Mark', 'Twen');
 result.split(' ');
 function printEmployee(emp) {
