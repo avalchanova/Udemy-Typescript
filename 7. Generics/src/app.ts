@@ -9,7 +9,12 @@ const names: Array<string> = []; // completely the same as: string[]
 
 const promise: Promise<string> = new Promise((resolve, reject)=> {
     // we say to TS that this promise will resolve to string Promise<string>
+    // we get better type safety
     setTimeout(()=>{
         resolve('This is done!')
     },2000);
 });
+
+promise.then(data=> {
+    data.split(' ')
+})
