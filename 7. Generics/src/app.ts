@@ -21,10 +21,14 @@ const names: Array<string> = []; // completely the same as: string[]
 
 // Generic function: 
     function merge<T extends Object, U extends Object>(objA: T, objB: U){
+        // the convention is a single characater and usually the first one is T and then we go on with the alphabet letters
         return Object.assign(objA, objB);
     }
     // here we say that generic type T can by anything
     // and generic type U can also be anything but most likely it will be different from T
 
-const mergedObj = merge({name:'Alex', hobbies:["Horse riding"]}, {age:24});
-console.log(mergedObj.hobbies); 
+const mergedObj = merge<{name:string, hobbies: string[]}, {age:number}>({name:'Alex', hobbies:["Horse riding", "Tennis"]}, {age:24});
+// we can write it like that but it is completely unnecessary since TS knows what's up 
+const mergedObj1 = merge<{name:string, hobbies: string[]}, {age:number}>({name:'Alex', hobbies:["Horse riding", "Tennis"]}, {age:24});
+
+console.log(mergedObj1.hobbies[1]); 
