@@ -151,3 +151,14 @@ function createCourseGoal(title: string, description: string, date: Date): Cours
 const nameArr: Readonly<string[]> = ["Max", 'Sports'];
 // nameArr.push('Manu'); //throws an error because it is readonly
 // nameArr.pop() // again an error 
+
+// Generic types VS Union types 
+
+// in one word it makes everything messy
+// errors occur
+// we cannot say 'string[] | number[] | boolean[]' instead of
+// <T extends string | number | boolean> 
+// we use union types if we want a function which we can be called with any type of the given; 
+// we are flexible (with union types) to have a different type with every method or function call
+// generic types are great if we want to lock in a certain type; use the same type throughout the
+// entire function
