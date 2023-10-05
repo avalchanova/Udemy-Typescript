@@ -27,7 +27,7 @@ const names: Array<string> = []; // completely the same as: string[]
         return Object.assign(objA, objB);
     }
     // here we say that generic type T can by any type of object 
-    // and generic type U can also be any type of object but most likely it will be different from T
+    // and generic type U can also be any type of object but most likely  it will be different from T
 
 const mergedObj = merge<{name:string, hobbies: string[]}, {age:number}>({name:'Alex', hobbies:["Horse riding", "Tennis"]}, {age:24});
 // we can write it like that but it is completely unnecessary since TS knows what's up 
