@@ -14,7 +14,7 @@ type Employee = {
 type ElevatedEmployee = Admin & Employee; // the result is a new obj type that encapsulates Admin and Employee
 
 // we can achieve the same if instead of types the Admin and the Employee are interfaces
-// then we will create an interface ElevatedEmployee extends Admin, Employee
+// then we will create an interface ElevatedEmployee extends Admin and Employee
 // and the e1 will give the same result
 const e1: ElevatedEmployee = {
   name: "Alex",
@@ -35,7 +35,7 @@ function add(a: string, b: string): string
 function add(a: number, b: number): number
 function add(a: string, b: number): string
 function add(a: number, b: string): string
-// here we make all of the possible overloads for the add() 
+// here we make all of the possible overloads for the add()
 
 // Type Guard ("typeof"):
 function add(a: Combinable, b: Combinable) {
@@ -53,9 +53,9 @@ const fetchedUserData = {
     name: "Alex",
     job: {title: "CEO", description: "My own company"}
 };
-// if we try to fetch data from the backend and do not have a job property, 
+// if we try to fetch data from the backend and do not have a job property,
 // we can check the JS way:
-// we try to access job and if there is job we dive deeper in the title 
+// we try to access job and if there is job we dive deeper in the title
 // which will avoid runtime errors
 // console.log(fetchedUserData.job && fetchedUserData.job.title);
 
@@ -66,10 +66,10 @@ console.log(fetchedUserData?.job?.title);
 
 // Nullish Coalescing = сливане
 
-const userInput = "" 
+const userInput = ""
 // remember in this case TS knows whats up with userInput, but if it comes from the backend, it would not have this on-the-go knowledge
 
-const storedData = userInput || "DEFAULT"; 
+const storedData = userInput || "DEFAULT";
 // if the first value is faulsy (e.g "", undefined, null, 0, NaN, etc) the storedData will have a string value "DEFAULT"
 const storedData2 = userInput ?? "DEFAULT"
 // this way if the userInput is undefined or null (only) it will return "DEFAULT"
@@ -81,8 +81,8 @@ const result = add('Mark', 'Twen') as string
 // which is in a way true, but actually it will return either a string or a number
 // the consequance is that we cannot call string functions like split() on the result
 // because TS does not see the result as a string but as a Combinable
-// our solutions is to type cast (writing 'as string' at the end) 
-// but this is not optional because we write unnecasary code 
+// our solutions is to type cast (writing 'as string' at the end)
+// but this is not optional because we write unnecasary code
 // the real solution is overloading a function (look above the original function add())
 
 // with a ? we can make one of the params to be optional, example:
@@ -153,7 +153,7 @@ interface Horse {
   runningSpeed: number;
 }
 
-type Animal = Bird | Horse; // union types 
+type Animal = Bird | Horse; // union types
 
 function moveAnimal(animal: Animal) {
   // we cannot check instanceof here because the code is compiled to JS before checking it and JS does not support interfaces
@@ -181,10 +181,10 @@ const paragraph = document.querySelector('p'); // TS returns type of element HTM
 // const paragraph = document.getElementById('messageOutput');  // TS returns type of element HTMLElement  or null
 // TS needs to know what HTML element it is because it will throw an error
 // if we try to access the userInputElement's value
-// that is why we cast types (2 ways): 
+// that is why we cast types (2 ways):
 // 1st way: const userInputElement = <HTMLInputElement>document.getElementById('userInput') // TS returns type of element HTMLElement or null
 // 2nd way: const userInputElement = document.getElementById('userInput')! as HTMLInputElement
-// chose one and be consistent with it throughout the project 
+// chose one and be consistent with it throughout the project
 
 const userInputElement = document.getElementById('userInput') as HTMLInputElement
 // but we do this ONLY if we are sure that the element we are accessing is an existing element
