@@ -12,26 +12,26 @@ function Logger(constructor: Function){
 }
 */
 // Decorator Factory
-function Logger(logString: string){
-  console.log("Logger factory");
-  return function (constructor: Function){
-    console.log(logString);
-    console.log(constructor);
-  };
+function Logger(logString: string) {
+    console.log("Logger factory");
+    return function (constructor: Function) {
+        console.log(logString);
+        console.log(constructor);
+    };
 }
 
-function WithTemplate(template: string, hookId: string){
-  // return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
-  console.log("Template factory");
-  return function(constructor: any){
-      console.log("Rendering template...");
-      const hookElement = document.getElementById(hookId)
-      const p = new constructor();
-      if (hookElement){
-        hookElement.innerHTML = template;
-        hookElement.querySelector('h1')!.textContent = p.name
-      }
-  }
+function WithTemplate(template: string, hookId: string) {
+    // return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
+    console.log("Template factory");
+    return function (constructor: any) {
+        console.log("Rendering template...");
+        const hookElement = document.getElementById(hookId)
+        const p = new constructor();
+        if (hookElement) {
+            hookElement.innerHTML = template;
+            hookElement.querySelector('h1')!.textContent = p.name
+        }
+    }
 }
 
 
@@ -45,13 +45,43 @@ function WithTemplate(template: string, hookId: string){
 // the @WithTemplate deco will run first, because decorators run from the bottom up, so first will be WithTemplate, the Logger, and so on
 // but the factories run from top to bottom: so messy
 class Person {
-  name = "Alex";
+    name = "Alex";
 
-  constructor(){
-    console.log("Creating person object ...");
-  }
+    constructor() {
+        console.log("Creating person object ...");
+    }
 }
 
 const pers = new Person();
 
 console.log(pers);
+
+
+// ---
+
+function Log(target: any, propertyName: string | Symbol) {
+    console.log('Property decorator...');
+    console.log(target, propertyName);
+}
+class Product {
+    title: string;
+    private _price: number;
+
+    set price(val: number) {
+        if (val > 0) {
+            this._price = val
+        } else {
+            throw new Error('Invalid Price - should be positive!')
+        }
+    }
+
+    constructor(t: string, p: number) {
+        this.title = t;
+        this._price = p;
+    }
+
+    getPriceWithTax(tax: number) {
+        return this._price * (1 + tax)
+    }
+
+}
