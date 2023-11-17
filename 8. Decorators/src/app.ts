@@ -1,4 +1,5 @@
 function Logger(constructor: Function){
+  // a decorator is a function which is applied to something (e.g., to a class) in a certain way
   // the only special thing in this case so far is the capital L in Logger, otherwise it is just a function
   // but we can apply it as a decorator
   // decorators receive arguments
@@ -10,7 +11,8 @@ function Logger(constructor: Function){
 }
 
 
-@Logger
+@Logger // the @ is a special identifier, after which we point at a function (Logger)
+// decorator: this is how we add a decorator to a class
 class Person {
   name = "Alex";
 
