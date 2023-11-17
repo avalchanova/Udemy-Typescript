@@ -6,12 +6,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 function Logger(logString) {
+    console.log("Logger factory");
     return function (constructor) {
         console.log(logString);
         console.log(constructor);
     };
 }
 function WithTemplate(template, hookId) {
+    console.log("Template factory");
     return function (constructor) {
         console.log("Rendering template...");
         const hookElement = document.getElementById(hookId);
