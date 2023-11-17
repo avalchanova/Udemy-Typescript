@@ -57,4 +57,7 @@ class Product {
         return this._price * (1 + tax);
     }
 }
+__decorate([
+    Log
+], Product.prototype, "title", void 0);
 //# sourceMappingURL=app.js.map
