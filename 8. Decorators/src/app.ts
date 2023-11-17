@@ -36,6 +36,8 @@ function WithTemplate(template: string, hookId: string){
 // we have to execute it, so now we add () and give an argument if there is one needed, but if we apply a normal decorator we call it like this (shown bellow, no ())
 // the @ is a special identifier, after which we point at a function (Logger), just pointing, without () --> @Logger
 // decorator: this is how we add a decorator to a class
+
+@Logger('LOGGING')
 @WithTemplate("<h1>My Person Object</h1>", "app")
 class Person {
   name = "Alex";
