@@ -19,6 +19,12 @@ function Logger(logString: string){
   };
 }
 
+function WithTemplate(template: string, hookId: string){
+  return function(constructor: Function){
+
+  }
+}
+
 
 @Logger('LOGGING - PERSON') // when we want to apply the decorator in the decorator function
 // we have to execute it, so now we add () and give an argument if there is one needed, but if we apply a normal decorator we call it like this (shown bellow, no ())
