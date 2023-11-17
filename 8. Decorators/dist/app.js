@@ -26,7 +26,7 @@ let Person = class Person {
     }
 };
 Person = __decorate([
-    WithTemplate("", "app")
+    WithTemplate("<h1>My Person Object</h1>", "app")
 ], Person);
 const pers = new Person();
 console.log(pers);
