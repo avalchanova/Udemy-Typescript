@@ -1,3 +1,4 @@
+/*
 function Logger(constructor: Function){
   // a decorator is a function which is applied to something (e.g., to a class) in a certain way
   // the only special thing in this case so far is the capital L in Logger, otherwise it is just a function
@@ -9,9 +10,19 @@ function Logger(constructor: Function){
   console.log('Logging...');
   console.log(constructor);
 }
+*/
+// Decorator Factory
+function Logger(logString: string){
+  return function (constructor: Function){
+    console.log(logString);
+    console.log(constructor);
+  };
+}
 
 
-@Logger // the @ is a special identifier, after which we point at a function (Logger)
+@Logger('LOGGING - PERSON') // when we want to apply the decorator in the decorator function
+// we have to execute it, so now we add () and give an argument if there is one needed, but if we apply a normal decorator we call it like this (shown bellow, no ())
+// the @ is a special identifier, after which we point at a function (Logger), just pointing, without () --> @Logger
 // decorator: this is how we add a decorator to a class
 class Person {
   name = "Alex";
