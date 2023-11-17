@@ -20,11 +20,13 @@ function Logger(logString: string){
 }
 
 function WithTemplate(template: string, hookId: string){
-  return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
-    //  return function(constructor: Function){
+  // return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
+     return function(constructor: any){
     const hookElement = document.getElementById(hookId)
+    const p = new constructor();
     if (hookElement){
       hookElement.innerHTML = template;
+      hookElement.querySelector('h1')!.textContent = p.name
     }
   }
 }
