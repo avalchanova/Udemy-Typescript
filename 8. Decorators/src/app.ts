@@ -20,16 +20,21 @@ function Logger(logString: string){
 }
 
 function WithTemplate(template: string, hookId: string){
-  return function(constructor: Function){
-
+  return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
+    //  return function(constructor: Function){
+    const hookElement = document.getElementById(hookId)
+    if (hookElement){
+      hookElement.innerHTML = template;
+    }
   }
 }
 
 
-@Logger('LOGGING - PERSON') // when we want to apply the decorator in the decorator function
+// @Logger('LOGGING - PERSON') // when we want to apply the decorator in the decorator function
 // we have to execute it, so now we add () and give an argument if there is one needed, but if we apply a normal decorator we call it like this (shown bellow, no ())
 // the @ is a special identifier, after which we point at a function (Logger), just pointing, without () --> @Logger
 // decorator: this is how we add a decorator to a class
+@WithTemplate("", "app")
 class Person {
   name = "Alex";
 
