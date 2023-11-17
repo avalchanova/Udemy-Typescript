@@ -13,6 +13,7 @@ function Logger(logString) {
 }
 function WithTemplate(template, hookId) {
     return function (constructor) {
+        console.log("Rendering template...");
         const hookElement = document.getElementById(hookId);
         const p = new constructor();
         if (hookElement) {

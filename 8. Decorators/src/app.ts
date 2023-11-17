@@ -21,13 +21,14 @@ function Logger(logString: string){
 
 function WithTemplate(template: string, hookId: string){
   // return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
-     return function(constructor: any){
-    const hookElement = document.getElementById(hookId)
-    const p = new constructor();
-    if (hookElement){
-      hookElement.innerHTML = template;
-      hookElement.querySelector('h1')!.textContent = p.name
-    }
+    return function(constructor: any){
+      console.log("Rendering template...");
+      const hookElement = document.getElementById(hookId)
+      const p = new constructor();
+      if (hookElement){
+        hookElement.innerHTML = template;
+        hookElement.querySelector('h1')!.textContent = p.name
+      }
   }
 }
 
@@ -39,6 +40,7 @@ function WithTemplate(template: string, hookId: string){
 
 @Logger('LOGGING')
 @WithTemplate("<h1>My Person Object</h1>", "app")
+// the @WithTemplate deco will run first, because decorators run from the bottom up, so first will be WithTemplate, the Logger, and so on
 class Person {
   name = "Alex";
 
