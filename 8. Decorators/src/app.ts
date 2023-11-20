@@ -8,7 +8,7 @@ function Logger(constructor: Function){
   // not when it is instanciated
   // so the decorator runs when JS finds the definition of a class that is using a decorator
   console.log('Logging...');
-  console.log(constructor);
+  console.log(constructor)
 }
 */
 // Decorator Factory
