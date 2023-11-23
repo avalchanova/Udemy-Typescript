@@ -64,6 +64,10 @@ function Log(target: any, propertyName: string | Symbol) {
     console.log(target, propertyName);
 }
 
+function Log2(target: any, name: string, descriptor: PropertyDecorator) {
+
+}
+
 class Product {
     @Log // here we add a decorator to a property (it needs target and a property)
         //in this case the decorator will run with the definition of the class
