@@ -77,6 +77,7 @@ class Product {
     title: string;
     private _price: number;
 
+    @Log2
     set price(val: number) {
         if (val > 0) {
             this._price = val
