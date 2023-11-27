@@ -94,6 +94,18 @@ __decorate([
 ], Product.prototype, "getPriceWithTax", null);
 const p1 = new Product('Book', 19);
 const p2 = new Product('Book 2', 29);
+function Autobind(_, _2, descriptor) {
+    const originalMethod = descriptor.value;
+    const adjustedDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+            const boundFn = originalMethod.bind(this);
+            return boundFn;
+        }
+    };
+    return adjustedDescriptor;
+}
 class Printer {
     constructor() {
         this.message = "This works!";
@@ -102,7 +114,10 @@ class Printer {
         console.log(this.message);
     }
 }
+__decorate([
+    Autobind
+], Printer.prototype, "showMessage", null);
 const p = new Printer();
 const button = document.querySelector('button');
-button.addEventListener('click', p.showMessage.bind(p));
+button.addEventListener('click', p.showMessage);
 //# sourceMappingURL=app.js.map

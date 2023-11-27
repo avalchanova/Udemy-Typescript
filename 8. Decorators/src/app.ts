@@ -132,18 +132,26 @@ class Product {
 const p1 = new Product('Book', 19)
 const p2 = new Product('Book 2', 29)
 
-function Autobind(target: any, methodName: string, descriptor : PropertyDescriptor) {
+function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
+
+// this is the original: function Autobind(target: any, methodName: string, descriptor : PropertyDescriptor) {
     const originalMethod = descriptor.value
     const adjustedDescriptor: PropertyDescriptor = {
         configurable: true,
         enumerable: false,
         get() {
-
+            const boundFn = originalMethod.bind(this);
+            // what does this refer to here: well, this will refer to whatever is triggering this getter method
+            return boundFn
         } // the getter is like having a value with extra logic that runs before the value is returned
-    }
+    };
+    return adjustedDescriptor
+
 }
 class Printer {
     message = "This works!"
+
+    @Autobind
     showMessage() {
         console.log(this.message);
     }
@@ -152,6 +160,8 @@ class Printer {
 const p = new Printer();
 
 const button = document.querySelector('button')! // the ! tells TS we are sure there is a button
-button.addEventListener('click', p.showMessage.bind(p))
+button.addEventListener('click', p.showMessage)
 // if we leave ('click', p.showMessage) the way it was, it would point to the button itself because the word "this" changes context
 // this is why we bind p.showMessage with the context of p
+// and now when we have the @Autobind decorator everything works seamlessly
+// the extra layer of the getter method makes it work wonderfully
