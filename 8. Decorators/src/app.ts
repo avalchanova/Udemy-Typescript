@@ -128,3 +128,18 @@ class Product {
     }
 
 }
+
+const p1 = new Product('Book', 19)
+const p2 = new Product('Book 2', 29)
+
+class Printer {
+    message = "This works!"
+    showMessage() {
+        console.log(this.message);
+    }
+}
+
+const p = new Printer();
+
+const button = document.querySelector('button')! // the ! tells TS we are sure there is a button
+button.addEventListener('click', p.showMessage)
