@@ -175,6 +175,8 @@ function Required() {
 function PositiveNumber() {
 
 }
+
+function valite(obj: object) {}
 class Course{
     @Required
     title: string;
