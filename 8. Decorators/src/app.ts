@@ -71,6 +71,14 @@ function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
     console.log(descriptor);
 }
 
+function Log3(target: any, name: string | Symbol, descriptor: PropertyDescriptor) {
+    console.log("Method decator");
+    console.log(target);
+    console.log(name);
+    console.log(descriptor);
+
+}
+
 class Product {
     @Log // here we add a decorator to a property (it needs target and a property)
         //in this case the decorator will run with the definition of the class
@@ -91,6 +99,7 @@ class Product {
         this._price = p;
     }
 
+    @Log3
     getPriceWithTax(tax: number) {
         return this._price * (1 + tax)
     }
