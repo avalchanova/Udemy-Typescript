@@ -80,7 +80,7 @@ function Log3(target: any, name: string | Symbol, descriptor: PropertyDescriptor
 }
 
 function Log4(target: any, name: string | Symbol, position: number) {
-      console.log("Parameter decorator");
+    console.log("Parameter decorator");
     console.log(target);
     console.log(name);
     console.log(position);
