@@ -99,6 +99,7 @@ function Log4(target: any, name: string | Symbol, position: number) {
 }
 
 // decatorators that can return something are the ones we add to methods and to accessors
+// these are Log2, Log3
 
 class Product {
     @Log // here we add a decorator to a property (it needs target and a property)
