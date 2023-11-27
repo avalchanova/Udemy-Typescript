@@ -84,8 +84,6 @@ function Log4(target: any, name: string | Symbol, position: number) {
     console.log(target);
     console.log(name);
     console.log(position);
-
-
 }
 
 class Product {
