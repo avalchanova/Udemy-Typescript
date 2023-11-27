@@ -23,10 +23,13 @@ function Logger(logString: string) {
 function WithTemplate(template: string, hookId: string) {
     // return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
     console.log("Template factory");
-    return function <T extends {new(...args:any[])}>(originalConstructor: T) { //{new} tells TS that in the end this will be an object which can be mute
+
+    return function <T extends { new(...args: any[]): { name: string } }>(
+        originalConstructor: T
+    ) { //{new} tells TS that in the end this will be an object which can be mute
         // (...args:any[]) and this means the it will accept as many arguments as needed
         return class extends originalConstructor {
-            constructor() {
+            constructor(..._: any[]) {
                 super(); // the rule is: if you add constructor func in a class that extends
                 // another class then you have to call super( )
 
@@ -56,7 +59,6 @@ function WithTemplate(template: string, hookId: string) {
 // but the factories run from top to bottom: so messy
 class Person {
     name = "Alex";
-
     constructor() {
         console.log("Creating person object ...");
     }
