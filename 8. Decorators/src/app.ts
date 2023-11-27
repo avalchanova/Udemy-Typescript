@@ -28,12 +28,15 @@ function WithTemplate(template: string, hookId: string) {
             constructor() {
                 super(); // the rule is: if you add constructor func in a class that extends
                 // another class then you have to call super( )
+
+                // THIS template will only be rendered to the DOM if I instanciate this class --> @WithTemplate("<h1>My Person Object</h1>", "app")
+                // which means this won't render every time this decator function is executed
+                // which we saw happens as soon as we define the class
                 console.log("Rendering template...");
                 const hookElement = document.getElementById(hookId)
-                const p = new originalConstructor();
                 if (hookElement) {
                     hookElement.innerHTML = template;
-                    hookElement.querySelector('h1')!.textContent = p.name
+                    hookElement.querySelector('h1')!.textContent = this.name // accessing the name from the instance we are creating
                 }
             }
         }
