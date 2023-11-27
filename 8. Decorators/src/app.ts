@@ -159,16 +159,26 @@ class Printer {
 
 const p = new Printer();
 
-const button = document.querySelector('button')! // the ! tells TS we are sure there is a button
-button.addEventListener('click', p.showMessage)
+const button = document.querySelector('button')!; // the ! tells TS we are sure there is a button
+button.addEventListener('click', p.showMessage);
 // if we leave ('click', p.showMessage) the way it was, it would point to the button itself because the word "this" changes context
 // this is why we bind p.showMessage with the context of p
 // and now when we have the @Autobind decorator everything works seamlessly
 // the extra layer of the getter method makes it work wonderfully
 
+// ---
 
+function Required() {
+
+}
+
+function PositiveNumber() {
+
+}
 class Course{
+    @Required
     title: string;
+    @PositiveNumber
     price: number;
 
     constructor(t: string, p: number) {
@@ -186,6 +196,9 @@ courseForm.addEventListener('submit', event => {
     const title = titleEl.value;
     const price = +priceEl.value;
 
+    // we can validation logic here with "if"
+
     const createdCourse = new Course(title, price);
     console.log(createdCourse);
+
 })
