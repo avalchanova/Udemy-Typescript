@@ -23,15 +23,21 @@ function Logger(logString: string) {
 function WithTemplate(template: string, hookId: string) {
     // return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
     console.log("Template factory");
-    return function (constructor: any) {
-        console.log("Rendering template...");
-        const hookElement = document.getElementById(hookId)
-        const p = new constructor();
-        if (hookElement) {
-            hookElement.innerHTML = template;
-            hookElement.querySelector('h1')!.textContent = p.name
+    return function (originalConstructor: any) {
+        return class extends originalConstructor {
+            constructor() {
+                super(); // the rule is: if you add constructor func in a class that extends
+                // another class then you have to call super( )
+                console.log("Rendering template...");
+                const hookElement = document.getElementById(hookId)
+                const p = new originalConstructor();
+                if (hookElement) {
+                    hookElement.innerHTML = template;
+                    hookElement.querySelector('h1')!.textContent = p.name
+                }
+            }
         }
-    }
+    };
 }
 
 
