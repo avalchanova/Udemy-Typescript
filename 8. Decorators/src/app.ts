@@ -81,6 +81,7 @@ function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
     console.log(target);
     console.log(name);
     console.log(descriptor);
+    // return here is possible
 }
 
 function Log3(target: any, name: string | Symbol, descriptor: PropertyDescriptor) {
@@ -100,7 +101,7 @@ function Log4(target: any, name: string | Symbol, position: number) {
 
 // decatorators that can return something are the ones we add to methods and to accessors
 // these are Log2, Log3
-
+// decorators on properties and params also return something but TS does not respect it  --- Log and Log4
 class Product {
     @Log // here we add a decorator to a property (it needs target and a property)
         //in this case the decorator will run with the definition of the class
