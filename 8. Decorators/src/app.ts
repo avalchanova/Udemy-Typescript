@@ -142,4 +142,6 @@ class Printer {
 const p = new Printer();
 
 const button = document.querySelector('button')! // the ! tells TS we are sure there is a button
-button.addEventListener('click', p.showMessage)
+button.addEventListener('click', p.showMessage.bind(p))
+// if we leave ('click', p.showMessage) the way it was, it would point to the button itself because the word "this" changes context
+// this is why we bind p.showMessage with the context of p
