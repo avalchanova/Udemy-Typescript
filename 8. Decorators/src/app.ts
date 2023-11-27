@@ -165,3 +165,14 @@ button.addEventListener('click', p.showMessage)
 // this is why we bind p.showMessage with the context of p
 // and now when we have the @Autobind decorator everything works seamlessly
 // the extra layer of the getter method makes it work wonderfully
+
+
+class Course{
+    title: string;
+    price: number;
+
+    constructor(t: string, p: number) {
+        this.title = t;
+        this.price = p;
+    }
+}
