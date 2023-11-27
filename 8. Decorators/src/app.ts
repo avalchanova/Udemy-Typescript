@@ -23,7 +23,8 @@ function Logger(logString: string) {
 function WithTemplate(template: string, hookId: string) {
     // return function(_: Function){ // adding _ in this case signals to TS that I know i need a constructor but i will not be using it so i add _
     console.log("Template factory");
-    return function (originalConstructor: any) {
+    return function <T extends {new(...args:any[])}>(originalConstructor: T) { //{new} tells TS that in the end this will be an object which can be mute
+        // (...args:any[]) and this means the it will accept as many arguments as needed
         return class extends originalConstructor {
             constructor() {
                 super(); // the rule is: if you add constructor func in a class that extends
