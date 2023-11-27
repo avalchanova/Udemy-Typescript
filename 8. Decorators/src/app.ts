@@ -132,6 +132,16 @@ class Product {
 const p1 = new Product('Book', 19)
 const p2 = new Product('Book 2', 29)
 
+function Autobind(target: any, methodName: string, descriptor : PropertyDescriptor) {
+    const originalMethod = descriptor.value
+    const adjustedDescriptor: PropertyDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+
+        } // the getter is like having a value with extra logic that runs before the value is returned
+    }
+}
 class Printer {
     message = "This works!"
     showMessage() {
