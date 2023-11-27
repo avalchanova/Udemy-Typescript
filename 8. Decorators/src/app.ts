@@ -98,6 +98,8 @@ function Log4(target: any, name: string | Symbol, position: number) {
     console.log(position);
 }
 
+// decatorators that can return something are the ones we add to methods and to accessors
+
 class Product {
     @Log // here we add a decorator to a property (it needs target and a property)
         //in this case the decorator will run with the definition of the class
