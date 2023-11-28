@@ -168,13 +168,10 @@ button.addEventListener('click', p.showMessage);
 
 // ---
 
-function Required() {
 
-}
+function Required() {}
 
-function PositiveNumber() {
-
-}
+function PositiveNumber() {}
 
 function valite(obj: object) {}
 class Course{
