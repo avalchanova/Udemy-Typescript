@@ -120,6 +120,9 @@ __decorate([
 const p = new Printer();
 const button = document.querySelector('button');
 button.addEventListener('click', p.showMessage);
+function Required() { }
+function PositiveNumber() { }
+function valite(obj) { console.log(obj); }
 class Course {
     constructor(t, p) {
         this.title = t;

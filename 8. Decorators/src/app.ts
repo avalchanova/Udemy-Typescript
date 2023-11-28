@@ -179,11 +179,11 @@ function Required() {}
 
 function PositiveNumber() {}
 
-function valite(obj: object) {}
+function valite(obj: object) { console.log(obj);}
 class Course{
-    @Required
+    // @Required
     title: string;
-    @PositiveNumber
+    // @PositiveNumber
     price: number;
 
     constructor(t: string, p: number) {
