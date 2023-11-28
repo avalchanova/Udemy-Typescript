@@ -195,7 +195,9 @@ function PositiveNumber(target: any, propName: string) {
     }
 }
 
-function valite(obj: object) { console.log(obj);}
+function valite(obj: object) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name] // again we access the constructor prop which exists on the prototype of the object
+}
 class Course{
     // @Required
     title: string;
