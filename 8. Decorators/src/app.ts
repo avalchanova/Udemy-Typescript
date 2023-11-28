@@ -195,8 +195,17 @@ function PositiveNumber(target: any, propName: string) {
     }
 }
 
-function valite(obj: object) {
+function validate(obj: object) {
     const objValidatorConfig = registeredValidators[obj.constructor.name] // again we access the constructor prop which exists on the prototype of the object
+    // any validators we have for the Course class will be stored here (PositiveNumber and Required)
+    if (!objValidatorConfig) { // if we dont have any validators
+        return true // we will reutrn true because the obj will be valid
+    }
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) { // while looping a validator will be PositiveNumber and Required
+
+        }
+    }
 }
 class Course{
     // @Required
