@@ -178,10 +178,15 @@ interface ValidatorConfig{
 const registeredValidators: ValidatorConfig = {};
 
 function Required(target: any, propName: string) {
-    registeredValidators[target.constructor.name] // this gives us the name of the class Course in this case
+    registeredValidators[target.constructor.name] = {
+        [propName]: ['required']
+        // however this method is flawed because if we already have validators registered for this property we will overwrite now, which is wrong
+    }
+    // this gives us the name of the class Course in this case
     // the protatype of the instance we are working with will have a constructor
     // key which points to the constructor function which was used to create our object
     // we can retrieve the name of the constructor function from the constructor
+
 }
 
 function PositiveNumber() {}

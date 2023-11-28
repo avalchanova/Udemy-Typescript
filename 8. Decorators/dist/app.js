@@ -120,7 +120,12 @@ __decorate([
 const p = new Printer();
 const button = document.querySelector('button');
 button.addEventListener('click', p.showMessage);
-function Required() { }
+const registeredValidators = {};
+function Required(target, propName) {
+    registeredValidators[target.constructor.name] = {
+        [propName]: ['required']
+    };
+}
 function PositiveNumber() { }
 function valite(obj) { console.log(obj); }
 class Course {
