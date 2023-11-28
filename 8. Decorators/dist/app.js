@@ -131,7 +131,23 @@ function PositiveNumber(target, propName) {
         [propName]: ['positive']
     };
 }
-function valite(obj) { console.log(obj); }
+function validate(obj) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    if (!objValidatorConfig) {
+        return true;
+    }
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) {
+            switch (validator) {
+                case "required":
+                    return !!obj[prop];
+                case "positive":
+                    return obj[prop] > 0;
+            }
+        }
+    }
+    return true;
+}
 class Course {
     constructor(t, p) {
         this.title = t;

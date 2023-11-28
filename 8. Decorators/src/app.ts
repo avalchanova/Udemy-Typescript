@@ -195,17 +195,23 @@ function PositiveNumber(target: any, propName: string) {
     }
 }
 
-function validate(obj: object) {
+function validate(obj: any) {
     const objValidatorConfig = registeredValidators[obj.constructor.name] // again we access the constructor prop which exists on the prototype of the object
     // any validators we have for the Course class will be stored here (PositiveNumber and Required)
     if (!objValidatorConfig) { // if we dont have any validators
         return true // we will reutrn true because the obj will be valid
     }
-    for (const prop in objValidatorConfig) {
-        for (const validator of objValidatorConfig[prop]) { // while looping a validator will be PositiveNumber and Required
-
+    for (const prop in objValidatorConfig) {// while looping a prop will be the functions PositiveNumber and Required
+        for (const validator of objValidatorConfig[prop]) { // while looping a validator will be "positive" and "required"
+            switch (validator) {
+                case "required":
+                    return !!obj[prop]; // if there truly is a prop named title (in this particular case) then returns true
+                case "positive":
+                    return obj[prop] > 0; // it will return true if the price of the course is > 0
+            }
         }
     }
+    return true; // if it doesn't even get in the loop it will return true because there will be no validators found and the props will be okay
 }
 class Course{
     // @Required
