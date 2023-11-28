@@ -180,18 +180,18 @@ const registeredValidators: ValidatorConfig = {};
 function Required(target: any, propName: string) {
     registeredValidators[target.constructor.name] = {
         ...registeredValidators[target.constructor.name], // this will add any existing key-value pairs
-        [propName]: [...(registeredValidators[target.constructor.name]?.[propName] ?? []), 'required']    }
+        [propName]: [...(registeredValidators[target.constructor.name]?.[propName] ?? []), 'required']
+    };
     // this gives us the name of the class Course in this case
     // the protatype of the instance we are working with will have a constructor
     // key which points to the constructor function which was used to create our object
     // we can retrieve the name of the constructor function from the constructor
-
-}
+};
 
 function PositiveNumber(target: any, propName: string) {
     registeredValidators[target.constructor.name] = {
         ...registeredValidators[target.constructor.name], // this will add any existing key-value pairs
-        [propName]: ['positive']
+        [propName]: [...(registeredValidators[target.constructor.name]?.[propName] ?? []), 'positive']
     }
 }
 
