@@ -168,6 +168,12 @@ button.addEventListener('click', p.showMessage);
 
 // ---
 
+interface ValidatorConfig{
+    [property: string]: {
+        [validatableProp: string]: string[] // ['required', 'positive'] --> required title and a positive num for the price
+        // above is a key-value pair
+    }
+}
 
 function Required() {}
 
