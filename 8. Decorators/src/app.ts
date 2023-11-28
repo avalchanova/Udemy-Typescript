@@ -179,8 +179,8 @@ const registeredValidators: ValidatorConfig = {};
 
 function Required(target: any, propName: string) {
     registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name], // this will add any existing key-value pairs
         [propName]: ['required']
-        // however this method is flawed because if we already have validators registered for this property we will overwrite now, which is wrong
     }
     // this gives us the name of the class Course in this case
     // the protatype of the instance we are working with will have a constructor
@@ -191,32 +191,37 @@ function Required(target: any, propName: string) {
 
 function PositiveNumber(target: any, propName: string) {
     registeredValidators[target.constructor.name] = {
+        ...registeredValidators[target.constructor.name], // this will add any existing key-value pairs
         [propName]: ['positive']
     }
 }
 
 function validate(obj: any) {
     const objValidatorConfig = registeredValidators[obj.constructor.name] // again we access the constructor prop which exists on the prototype of the object
-    // any validators we have for the Course class will be stored here (PositiveNumber and Required)
+    // any validators we have for the Course class will be stored here (e.g. PositiveNumber and Required)
     if (!objValidatorConfig) { // if we dont have any validators
         return true // we will reutrn true because the obj will be valid
     }
+    let isValid = true
     for (const prop in objValidatorConfig) {// while looping a prop will be the functions PositiveNumber and Required
+        // console.log(prop);
         for (const validator of objValidatorConfig[prop]) { // while looping a validator will be "positive" and "required"
             switch (validator) {
                 case "required":
-                    return !!obj[prop]; // if there truly is a prop named title (in this particular case) then returns true
+                    isValid = isValid && !!obj[prop]; // if there truly is a prop named title (in this particular case) then returns true
+                    break;
                 case "positive":
-                    return obj[prop] > 0; // it will return true if the price of the course is > 0
+                    isValid = isValid && obj[prop] > 0; // it will return true if the price of the course is > 0
+                    break;
             }
         }
     }
-    return true; // if it doesn't even get in the loop it will return true because there will be no validators found and the props will be okay
+    return isValid; // if it doesn't even get in the loop it will return true because there will be no validators found and the props will be okay
 }
 class Course{
-    // @Required
+    @Required
     title: string;
-    // @PositiveNumber
+    @PositiveNumber
     price: number;
 
     constructor(t: string, p: number) {
@@ -234,9 +239,13 @@ courseForm.addEventListener('submit', event => {
     const title = titleEl.value;
     const price = +priceEl.value;
 
-    // we can validation logic here with "if"
-
     const createdCourse = new Course(title, price);
+    // we can validation logic here with "if"
+    if (!validate(createdCourse)) {
+        alert('Invalid input, please try again!');
+        return;
+    }
+
     console.log(createdCourse);
 
 })
