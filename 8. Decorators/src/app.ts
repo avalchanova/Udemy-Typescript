@@ -175,7 +175,14 @@ interface ValidatorConfig{
     }
 }
 
-function Required() {}
+const registeredValidators: ValidatorConfig = {};
+
+function Required(target: any, propName: string) {
+    registeredValidators[target.constructor.name] // this gives us the name of the class Course in this case
+    // the protatype of the instance we are working with will have a constructor
+    // key which points to the constructor function which was used to create our object
+    // we can retrieve the name of the constructor function from the constructor
+}
 
 function PositiveNumber() {}
 
