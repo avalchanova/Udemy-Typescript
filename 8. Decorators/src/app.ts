@@ -189,7 +189,11 @@ function Required(target: any, propName: string) {
 
 }
 
-function PositiveNumber() {}
+function PositiveNumber(target: any, propName: string) {
+    registeredValidators[target.constructor.name] = {
+        [propName]: ['positive']
+    }
+}
 
 function valite(obj: object) { console.log(obj);}
 class Course{
